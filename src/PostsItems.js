@@ -1,6 +1,27 @@
+import React from "react";
+
 function PostsItems(props){
-    
-    return(       
+
+  const [curtir, setCurtir] = React.useState("");
+  const [nomeIcon, setNomeIcon] = React.useState("heart-outline");
+
+  
+
+  function like()
+  {
+    if(nomeIcon === "heart-outline")
+    {
+      setNomeIcon("heart")
+      setCurtir("corlike")
+    }
+    else 
+    {
+      setNomeIcon("heart-outline")
+      setCurtir("a")
+    }
+  }
+
+    return(
             <div class="post">
                 <div class="topo">
                   <div class="usuario">
@@ -13,13 +34,13 @@ function PostsItems(props){
                 </div>
 
                 <div class="conteudo">
-                    <img src={props.img2} />
+                    <img onClick={like} src={props.img2} />
                 </div>
 
                 <div class="fundo">
                     <div class="acoes">
                 <div>
-                  <ion-icon name="heart-outline"></ion-icon>
+                  <ion-icon name={nomeIcon} className={curtir} onClick={like}></ion-icon>
                   <ion-icon name="chatbubble-outline"></ion-icon>
                   <ion-icon name="paper-plane-outline"></ion-icon>
                 </div>
@@ -37,7 +58,7 @@ function PostsItems(props){
             </div>
             </div>
     )
-        
+
 }
 
 export default PostsItems;
